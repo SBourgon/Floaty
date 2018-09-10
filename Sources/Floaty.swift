@@ -635,11 +635,15 @@ open class Floaty: UIView {
     
     fileprivate func setPlusLayer() {
         plusLayer.removeFromSuperlayer()
+        plusLayer.transform = CATransform3DMakeRotation(degreesToRadians(0), 0.0, 0.0, 1.0)
         plusLayer.frame = CGRect(x: 0, y: 0, width: size, height: size)
         plusLayer.lineCap = kCALineCapRound
         plusLayer.strokeColor = plusColor.cgColor
         plusLayer.lineWidth = 2.0
         plusLayer.path = plusBezierPath().cgPath
+        if(!closed) {
+            plusLayer.transform = CATransform3DMakeRotation(degreesToRadians(rotationDegrees), 0.0, 0.0, 1.0)
+        }
         layer.addSublayer(plusLayer)
     }
     
